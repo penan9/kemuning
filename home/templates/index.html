@@ -1,0 +1,14 @@
+{% extends "header.html" %}
+{% block myContent %}
+{% if home1 %}
+ <video preload="true" controls autoPlay="true" muted loop id="myVideo" playsinline="" width="100%" height="100%"
+     <source src="{{MEDIA_URL}}{{home1.filename}}" type="video/mp4">
+</video>
+     {%endif%}
+<!-- Optional: some overlay text to describe the video -->
+<div class="content">
+  <!-- Use a button to pause/play the video with JavaScript -->
+      <h1>Welcome!</h1>
+      <p>We are a representative to reputable refineries in Russia federation and Asia Pacific. Our suppliers has available allocations which they are ready and willing to sell to potential buyers like you.</p>
+      <a href="/read_more.html" >Read More</a>
+  {% endblock %}

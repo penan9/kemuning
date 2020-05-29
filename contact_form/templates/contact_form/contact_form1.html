@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="fixed-height" class="container-full">
+<div  class="container contact">
+   <div class="page-header"><h1>Contact Me</h1></div>
+    <div class="page-subheader">
+                It is a long established fact that a reader will be distracted by the readable content of a
+                page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                distribution of letters.
+    </div>
+    <div class="row">
+      <form method="post">
+        {% csrf_token %}
+        <div class="col-sm-4 left-inp">
+          <div class="form-group">
+            <input type="text" name="name" class="form-control" id="usr" placeholder="name">
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" id="pwd" placeholder="email">
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" class="form-control" id="pwd" placeholder="suject">
+          </div>
+        </div>
+         <div class="col-sm-8 msg-inp">
+           <div class="form-group">
+             <textarea name="body" class="form-control" rows="5" id="comment" placeholder="message"></textarea>
+             <input type="submit" value="send">
+           </div>
+          </div>
+      </form>
+    </div>
+</div>
+</div>
+{% endblock content %}

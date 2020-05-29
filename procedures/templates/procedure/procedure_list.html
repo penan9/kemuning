@@ -1,0 +1,17 @@
+{% extends "header.html" %}
+{% load static from staticfiles %}
+
+{% block myContent %}
+  <header class="showcase">
+    <div class="container showcase-inner">
+        <h1>Procedure List</h1>
+        {% for procedure in procedures %}
+            <div class="procedure">
+                <h2><a href="#">{{ procedure.title }}</a></h2>
+                <p style="white-space: pre-wrap;text-align:left; font-size: 15px; font-type: arial">{{ procedure.body }}</p>
+                <p>{{ procedure.date }}</p>
+        </div>
+        {% endfor %}
+        </div>
+  </header>
+{% endblock %}

@@ -1,0 +1,15 @@
+mkdir blog
+cd blog
+virtualenv env
+source env/bin/activate
+pip3 install django
+django-admin startproject blog .
+pip3 install mysqlclient
+mysql -u penan9 -h penan9.mysql.pythonanywhere-services.com -p 'penan9$dbname1'
+show databases;
+select database();
+show tables;
+(env) 04:14 ~/projects/blog $ python manage.py runserver
+python3 manage.py shell 
+>>> from django.core.mail import send_mail
+>>> send_mail('django test mail','this is django test body', 'agrochiliz@gmail.com', ['machang11a@gmail.com'], fail_silently=False)
