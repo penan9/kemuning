@@ -5,11 +5,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .forms import ContactForm
 from .models import ContactFormModel
+import random
+from aboutus.views import get_image
 
-conn = sqlite3.connect("db.sqlite3")
-c = conn.cursor()
-c.close()
-conn.close()
+#conn = sqlite3.connect("db.sqlite3")
+#c = conn.cursor()
+#c.close()
+#conn.close()
 
 
 #def data_entry():
@@ -17,6 +19,7 @@ conn.close()
 
 
 def index(request):
+    image1 = get_image("home")
     if request.method == 'GET':
         form = ContactForm()
     else:
@@ -38,5 +41,5 @@ def index(request):
                 return HttpResponse('Network busy, please try again...')
             for contactformmodel in contactformmodels:
                 return HttpResponse("ok..")
-            return render(request, "success.html", {'form': form})
-    return render(request, "email.html", {'form': form})
+            return render(request, "success.html", {'form': form, 'image1':image1})
+    return render(request, "email.html", {'form': form, 'image1':image1})

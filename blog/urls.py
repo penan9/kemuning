@@ -22,18 +22,17 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^articles/', include('articles.urls')),
     url(r'^procedures/', include('procedures.urls')),
-    url(r'^about.html$', views.about),
+    url(r'^aboutus/', include('aboutus.urls')),
     url(r'^home/', include('home.urls')),
     url(r'^', include('home.urls')),
-    url(r'^read_more.html$', views.read_more),
+    url(r'^read_more$', views.read_more),
     url(r'^products/', include('products.urls')),
     url(r'^products/new', include('products.urls')),
     url(r'^products/sales', include('products.urls')),
     url(r'^products/details', include('products.urls')),
-    url(r'^contact_form/', include('contact_form.urls')),
     url(r'^sendemail/', include('sendemail.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+admin.site.index_title = "Welcome to Kemuning Oil & Gas Portal"

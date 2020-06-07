@@ -13,3 +13,18 @@ show tables;
 python3 manage.py shell 
 >>> from django.core.mail import send_mail
 >>> send_mail('django test mail','this is django test body', 'agrochiliz@gmail.com', ['machang11a@gmail.com'], fail_silently=False)
+
+(env) 13:28 ~/projects/blog (kemuning_b1)$ python3 manage.py makemigrations                                                 
+!507Migrations for 'home':
+  home/migrations/0010_auto_20200606_1329.py
+    - Remove field filename from home
+    - Add field name to home
+(env) 13:29 ~/projects/blog (kemuning_b1)$ !507
+python3 manage.py migrate
+Operations to perform:
+  Apply all migrations: aboutus, admin, auth, contact_form, contenttypes, home, procedures, products, sendemail, sessions
+Running migrations:
+  Applying home.0010_auto_20200606_1329... OK
+(env) 13:30 ~/projects/blog (kemuning_b1)$ 
+restart python the in web
+tail -f /var/log/kemuning.pythonanywhere.com.server.log

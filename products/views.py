@@ -1,19 +1,33 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Product, Fuel
+from .models import Product
+import random
+from aboutus.views import get_image
 
 def index(request):
-	fuels = Fuel.objects.all()
-	return render(request,'index_fuel.html', {'fuels':fuels})
-
-
-def index_products(request):
-	products = Product.objects.all()
-	return render(request,'index1.html', {'products':products})
+        products = Product.objects.all()
+        for product in products:
+            code = str(product.code)[0:4]
+            if code != product.code2:
+               product.code2 = code
+               product.save()
+        image1 = get_image("home")
+        return render(request,'product.html', {'products':products, 'image1':image1})
 
 
 def new(request):
-	return HttpResponse('New products')
+        products = Product.objects.all()
+        homepage = "welcome: "
+        for product in products:
+            code = str(product.code)[0:4]
+            if code != product.code2:
+               product.code2 = code
+               product.save()
+            homepage += product.code2
+            homepage += " : "
+            homepage += str(product.code)
+            homepage += " ; "
+        return HttpResponse('New products ' + homepage)
 
 
 def sales(request):

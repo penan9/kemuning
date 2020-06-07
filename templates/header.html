@@ -10,8 +10,33 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+<style>
+.bckgrd {
+    background: url('/media/{{image1.file}}');
+}
+.bckgrd-2 {
+    background: url('/media/{{image2.file}}');
+  background-repeat: no-repeat;
+}
+.bckgrd-3 {
+      /* Full height 
+      */
+background: url('/media/images/hp/b1.png');
+
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+}
+</style>
 </head>
-<body>
+{% if image1 %}
+<body class="bckgrd">
+    {% else %}
+{% if image2 %}
+<body class="bckgrd-2">
+    {% else %}
+<body class="bckgrd-3">
+        {% endif %}
+        {% endif %}
 
   <div class="menu-wrap">
     <input type="checkbox" class="toggler">
@@ -22,7 +47,7 @@
           <ul>
       <li><a href="/home">Home</a></li>
       <li><a href="/products">Products</a></li>
-      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/aboutus">About Us</a></li>
       <li><a href="/sendemail">Contact Us</a></li>
       <li><a href="/admin">Admin</a></li>
           </ul>
@@ -36,5 +61,19 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+        <script type ="text/javascript">
+        var header = $('body');
+
+var backgrounds = new Array(
+    'url(http://placekitten.com/100)'
+  , 'url(http://placekitten.com/200)'
+  , 'url(http://placekitten.com/300)'
+  , 'url(http://placekitten.com/400)'
+);
+
+var current = 0;
+
+header.css('background-image', backgrounds[0]);
+    </script>
 </body>
 </html>

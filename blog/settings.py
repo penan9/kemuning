@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products.apps.ProductsConfig',
     'sendemail.apps.SendemailConfig',
-    'articles',
     'home',
-    'contact_form',
+    'aboutus',
     'procedures',
 ]
 
