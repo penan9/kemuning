@@ -10,7 +10,7 @@
   <!-- Use a button to pause/play the video with JavaScript -->
           {% for about in about1 %}
         {% if about.header == "Welcome" %}
-        <h1>{{about.name}}</h1>
+        <h1 id="fading-h">{{about.name}}</h1>
         <p>{{about.body}}</p>
         {% endif %}
         {% endfor %}

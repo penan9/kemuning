@@ -223,3 +223,63 @@ visibility: hidden;
   background: #ddd;
   color: black;
 }
+
+#fading-r {
+  color: red;
+  animation-name: fading-r;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes fading-r {
+  from {color: red;}
+  to {color: skyblue;}
+}
+
+#fading-h {
+  color: red;
+  animation-name: fading-h;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes fading-h {
+  from {color: red;}
+  to {color: white;}
+}
+
+#rotateX {
+  transform: rotateX(150deg);
+}
+
+/*
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
+ */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
