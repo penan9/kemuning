@@ -36,26 +36,26 @@ def auto_delete_imagefile_on_delete(sender, instance, **kwargs):
 
 
 @receiver(models.signals.pre_save, sender=Image)
-def auto_delete_imagefile_on_change(sender, instance, **kwargs):
-    """
-    Deletes old file from filesystem
-    when corresponding `MediaFile` object is updated
-    with new file.
-    """
-    print ("pre save ... ")
-    print (sender)
+def auto_delete_file_on_change(sender, instance, **kwargs):
+    print ("pre save image ...")
     if not instance.pk:
         return False
 
     try:
         old_file = sender.objects.get(pk=instance.pk).file
-    except sender.DoesNotExist:
+        new_file = instance.file
+        if not old_file == new_file:
+            if os.path.isfile(old_file.path):
+                os.remove(old_file.path)
+
+    except ValueError:
+        print ("Exception: ValueError")
         return False
 
-    new_file = instance.file
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+    except sender.DoesNotExist:
+        print ("Exception: DoesNotExist")
+        print (sender)
+        return False
 
 
 class Home(models.Model):
@@ -86,10 +86,16 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
     try:
         old_file = sender.objects.get(pk=instance.pk).file
-    except sender.DoesNotExist:
+        new_file = instance.file
+        if not old_file == new_file:
+            if os.path.isfile(old_file.path):
+                os.remove(old_file.path)
+
+    except ValueError:
+        print ("Exception: ValueError")
         return False
 
-    new_file = instance.file
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+    except sender.DoesNotExist:
+        print ("Exception: DoesNotExist")
+        print (sender)
+        return False

@@ -1,8 +1,8 @@
 import os
 from django.db import models
+from django.utils import timezone
 from procedures.models import Procedure
 from django.dispatch import receiver
-
 
 class Product(models.Model):
 	name = models.CharField(max_length=255)
@@ -15,6 +15,8 @@ class Product(models.Model):
 	youtube_id = models.CharField(max_length=100, default='', blank=True)
 	button_name = models.CharField(max_length=100, default='procedure')
 	photo = models.ImageField(upload_to='images/products', blank=True, default='')
+	date = models.DateTimeField(auto_now_add=True)
+	#date = models.DateTimeField(default=timezone.now)
 
 
 class Offer(models.Model):
@@ -42,10 +44,14 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
     try:
         old_file = sender.objects.get(pk=instance.pk).photo
-    except sender.DoesNotExist:
+        new_file = instance.photo
+        if not old_file == new_file:
+            if os.path.isfile(old_file.path):
+                os.remove(old_file.path)
+
+    except ValueError:
+        print ("Exception: ValueError")
         return False
 
-    new_file = instance.photo
-    if not old_file == new_file:
-        if os.path.isfile(old_file.path):
-            os.remove(old_file.path)
+    except sender.DoesNotExist:
+        return False
