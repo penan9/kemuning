@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Offer, Product
+from .models import Offer, Product, ProductDetail
+
+
+class ProductDetailAdmin(admin.ModelAdmin):
+    list_display = ('productid', 'product', 'title', 'desc', 'directory', 'photo', 'date')
+    readonly_fields=('productid',)
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -7,9 +12,11 @@ class OfferAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'stock', 'price', 'price2', 'unit', 'photo', 'button_name', 'youtube_id')
+    readonly_fields=('code2', 'doc')
+    list_display = ('id', 'name', 'code', 'stock', 'price', 'price2', 'unit', 'photo', 'button_name', 'doc')
 
 
 # Register your models here.
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Offer, OfferAdmin)
+admin.site.register(ProductDetail, ProductDetailAdmin)

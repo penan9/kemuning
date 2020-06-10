@@ -5,5 +5,5 @@ urlpatterns = [
 	path('', views.index),
 	path('new', views.new),
 	path('sales', views.sales),
-	path('details', views.details)
+        path('<int:p_id>/', views.details),
 ]
