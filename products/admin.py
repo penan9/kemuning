@@ -4,7 +4,7 @@ from .models import Offer, Product, ProductDetail
 
 class ProductDetailAdmin(admin.ModelAdmin):
     list_display = ('productid', 'product', 'title', 'desc', 'directory', 'photo', 'date')
-    readonly_fields=('productid',)
+    readonly_fields=('productid', 'thumbnail')
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -13,7 +13,7 @@ class OfferAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     readonly_fields=('code2', 'doc')
-    list_display = ('id', 'name', 'code', 'stock', 'price', 'price2', 'unit', 'photo', 'button_name', 'doc')
+    list_display = ('id', 'name', 'code', 'stock', 'price', 'price2', 'unit', 'photo', 'doc', 'youtubeID')
 
 
 # Register your models here.

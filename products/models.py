@@ -7,6 +7,7 @@ from django.dispatch import receiver
 
 class Product(models.Model):
 	name = models.CharField(max_length=255)
+	youtubeID = models.CharField(max_length=255, default="")
 	code = models.ForeignKey(Procedure, default='1', verbose_name='Procedure', null=True, blank=True, on_delete=models.SET_NULL)
 	code2 = models.CharField(max_length=10, default="")
 	price = models.FloatField()
@@ -62,8 +63,19 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
 
 def UploadedConfigPath(instance, filename):
       id = str(instance.product)[0:5]
-      print ("ID: " + id)
-      return os.path.join('gallery', id, str(instance.directory), filename)
+      print ("At UploadedConfigPath ID: " + id)
+      imageFileName = os.path.join('gallery', id, str(instance.directory), filename)
+      print ("Original imagefilename: "+ imageFileName)
+      dir = os.path.join('gallery', str(instance.directory))
+      prefix, extension = os.path.splitext(imageFileName)
+      print ("prefix: "+ prefix + " ext: " + extension)
+      instance.thumbnail = imageFileName
+      if ((extension == ".doc") or (extension == ".docx")):
+          instance.thumbnail = dir + "thumbnail/word.png"
+      elif (extension == ".pdf"):
+          instance.thumbnail = dir + "thumbnail/pdf.png"
+      print ("thumbnail: "+ instance.thumbnail)
+      return imageFileName
 
 
 class ProductDetail(models.Model):
@@ -71,8 +83,9 @@ class ProductDetail(models.Model):
 	productid = models.CharField(max_length=50)
 	product = models.ForeignKey(Product, default='1', verbose_name='Product', null=True, blank=True, on_delete=models.SET_NULL)
 	desc = models.CharField(max_length=255, default="")
-	directory = models.CharField(max_length=50, default="")
+	directory = models.CharField(max_length=50, blank=True, default="")
 	photo = models.FileField(upload_to=UploadedConfigPath, blank=True, default='')
+	thumbnail = models.CharField(max_length=255, blank=True, default='')
 	date = models.DateTimeField(auto_now_add=True)
 
 
