@@ -14,6 +14,7 @@
 body {
   font-family: 'Roboto', sans-serif, arial;
   line-height: 1.4;
+  color: yellow;
 }
 
 .container {
@@ -187,26 +188,16 @@ visibility: hidden;
   }
 }
 
-/* Style the video: 100% width and height to cover the entire window */
-#myVideo {
-    body {
-        /*
-        background-position-y: top;
-        -webkit-background-size: contain;
-        -moz-background-size: contain;
-        -o-background-size: contain;
-        background-size: contain;
-  top: 50%;
-  left: 50%;
-        */
+#myVideo-wrapper {
     width: 100%;
     height: 100%;
-    position: fixed;
+    position: absolute;
     left: 0px;
     top: 0px;
-    z-index: -1;
-    overflow-y: fixed;
-  }
+    z-index: 0;}
+#myVideo{
+       width:100%;
+    height:auto;
 }
 
 /* Add some content at the bottom of the video/page */
