@@ -7,7 +7,7 @@ import random
 
 
 def index(request):
-    about1 = About.objects.all()
+    about1 = About.objects.all().order_by('sequence')
     home = Home.objects.all()
     image2 = get_image("hp")
 #    home2 = Home.objects.values()
