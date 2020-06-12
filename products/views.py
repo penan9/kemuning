@@ -20,7 +20,9 @@ def index(request):
 
 
 def new(request):
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('date')
+        last_entry = Product.objects.latest("date")
+        last_date = last_entry.date
         homepage = "welcome: "
         for product in products:
             code = str(product.code)[0:4]
@@ -32,7 +34,8 @@ def new(request):
             homepage += str(product.code)
             homepage += " ; "
 #        return HttpResponse('New products ' + homepage)
-        return render(request,'popup.html', {'products':products})
+        image1 = get_image("home")
+        return render(request,'popup.html', {'image1':image1, 'last_date': last_date, 'products':products})
 
 
 def sales(request):
