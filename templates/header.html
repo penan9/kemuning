@@ -55,27 +55,13 @@ background: url('/media/images/hp/b1.png');
       </div>
     </div>
   </div>
-  {% block myContent0 %}
-  {% endblock %}
-  {% block myContent %}
-  {% endblock %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-        <script type ="text/javascript">
-        var header = $('body');
-
-var backgrounds = new Array(
-    'url(http://placekitten.com/100)'
-  , 'url(http://placekitten.com/200)'
-  , 'url(http://placekitten.com/300)'
-  , 'url(http://placekitten.com/400)'
-);
-
-var current = 0;
-
-header.css('background-image', backgrounds[0]);
-    </script>
+  {% block myContent0 %}
+  {% endblock %}
+  {% block myContent %}
+  {% endblock %}
 </body>
 </html>
