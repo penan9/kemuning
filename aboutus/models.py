@@ -15,6 +15,7 @@ class About(models.Model):
        default='Welcome',
     )
     name = models.CharField(max_length=100)
+    sequence = models.IntegerField(default=1)
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 

@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 class Product(models.Model):
 	name = models.CharField(max_length=255)
-	youtubeID = models.CharField(max_length=255, default="")
+	youtubeID = models.CharField(max_length=255, null=True, blank=True, default="")
 	code = models.ForeignKey(Procedure, default='1', verbose_name='Procedure', null=True, blank=True, on_delete=models.SET_NULL)
 	code2 = models.CharField(max_length=10, default="")
 	price = models.FloatField()
@@ -66,14 +66,14 @@ def UploadedConfigPath(instance, filename):
       print ("At UploadedConfigPath ID: " + id)
       imageFileName = os.path.join('gallery', id, str(instance.directory), filename)
       print ("Original imagefilename: "+ imageFileName)
-      dir = os.path.join('gallery', str(instance.directory))
+      dir = os.path.join('gallery')
       prefix, extension = os.path.splitext(imageFileName)
       print ("prefix: "+ prefix + " ext: " + extension)
       instance.thumbnail = imageFileName
       if ((extension == ".doc") or (extension == ".docx")):
-          instance.thumbnail = dir + "thumbnail/word.png"
+          instance.thumbnail = dir + "/thumbnail/word.png"
       elif (extension == ".pdf"):
-          instance.thumbnail = dir + "thumbnail/pdf.png"
+          instance.thumbnail = dir + "/thumbnail/pdf.png"
       print ("thumbnail: "+ instance.thumbnail)
       return imageFileName
 

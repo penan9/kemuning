@@ -26,6 +26,6 @@ def get_image(request):
          
 
 def index(request):
-    about1 = About.objects.all()
+    about1 = About.objects.all().order_by('sequence')
     image1 = get_image("home")
     return render(request,'about.html', {'about1':about1, 'image1':image1})

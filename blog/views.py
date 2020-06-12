@@ -8,7 +8,7 @@ from home.models import Home
 
 
 def read_more(request):
-    about1 = About.objects.all()
+    about1 = About.objects.all().order_by('sequence')
     home1 = Home.objects.all()
     image1 = get_image("home")
 #    for myAbout in about1:

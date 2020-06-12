@@ -6,4 +6,4 @@ admin.site.register(About)
 
 
 class AboutAdmin(admin.ModelAdmin):
-    list_display = ('name', 'body')
+    list_display = ('name', 'sequence', 'body')
